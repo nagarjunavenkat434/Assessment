@@ -8,7 +8,7 @@ app.use(cors());
 const { Client, Databases, ID } = require("appwrite");
 const sdk = require("node-appwrite");
 
-
+//appwrite configuration
 const client = new sdk.Client()
 
 client.setEndpoint('https://cloud.appwrite.io/v1')
