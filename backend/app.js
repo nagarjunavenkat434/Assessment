@@ -54,7 +54,7 @@ const databases = new sdk.Databases(client);
 
 //fetching data from database
 
-async function userFunction() {
+// async function userFunction() {
 // app.get('/api/storeproductsdata', async (req, res) => {
 //     try {
 
@@ -74,15 +74,14 @@ async function userFunction() {
 // });
 // }
 
-console.log('hello naga');}
-
-userFunction()
-.then(result => {
-    console.log(result);
-  })
-  .catch(error => {
-    console.error(error);
-  });
+console.log('hello naga');
+// userFunction()
+// .then(result => {
+//     console.log(result);
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
 
 const port = 3001;
 app.listen(port, () => {
