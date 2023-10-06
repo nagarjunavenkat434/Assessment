@@ -49,6 +49,7 @@ app.post('/api/storeproducts', async (req, res) => {
 });
 
 //fetching data from database
+async function userFunction() {
 app.get('/api/storeproductsdata', async (req, res) => {
     try {
 
@@ -66,8 +67,9 @@ app.get('/api/storeproductsdata', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch data from the collection' });
     }
 });
+}
 
-
+userFunction();
 const port = 3001;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
