@@ -1,7 +1,7 @@
 
 function userFunction(){
     return(
-        console.log("helloworld")
+        context.log("helloworld")
     )
 }
 
