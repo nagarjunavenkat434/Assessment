@@ -74,7 +74,7 @@ async function userFunction() {
 // });
 // }
 
-console.log('hello world');}
+console.log('hello naga');}
 
 userFunction()
 .then(result => {
