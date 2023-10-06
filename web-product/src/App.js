@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/storeproductsdata'); // Use Axios for GET request
+        const response = await axios.get('http://localhost:3001/api/productsdata'); // Use Axios for GET request
         console.log("????????????",response)
         setProductData(response.data);
       } catch (error) {
@@ -29,7 +29,7 @@ function App() {
       <main>
         <div className="product-list">
       {productData?.map((product, index) => (
-        <ProductDetails key={index} product={JSON.parse(product.data)} />
+        <ProductDetails key={index} product={JSON.parse(product.data)} index={index} />
       ))}
     </div>
       </main>

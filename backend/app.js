@@ -3,18 +3,20 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+const { config } = require("dotenv");
+config({ path: '.env' })
 
 const app = express();
 app.use(cors());
-const { Client, Databases, ID} = require("appwrite");
+const { Client, Databases, ID } = require("appwrite");
 const sdk = require("node-appwrite");
 
 //appwrite configuration
 const client = new sdk.Client()
 
-client.setEndpoint('https://cloud.appwrite.io/v1')
-    .setProject('651ef9776046ee84cb9f')
-    .setKey("91713a6f558fc3a157a99c594d1d935c709a0cc35d124e9d746019d43ea9aa85f95432857e7da1dcf106af1cd6369be0e7f397170e7a35ae8d1e7f61ce593491acb3c1c8ac1cb7db8b6ed0edac6e171b0886248a1c0cf1b80d452708e39e465bb5d56b8f06d0c832cbdc5842779e59c064b6ae524c4d4239625f5c1235e81c35");
+client.setEndpoint(process.env.APPWRITE_ENDPOINT)
+    .setProject(process.env.APPWRITE_PROJECT_ID)
+    .setKey(process.env.APPWRITE_API_KEY);
 
 const databases = new sdk.Databases(client);
 
@@ -39,8 +41,8 @@ app.post('/api/storeproducts', async (req, res) => {
     try {
         const response = await axios.request(options);
         const dataone = await databases.createDocument(
-            '651ef99ad72cf952fdc4',
-            '651f98c981c19ff7ac94',
+            process.env.APPWRITE_DB_DATABASE_ID,
+            process.env.APPWRITE_DB_COLLECTION_ID,
             sdk.ID.unique(),
             { data: [JSON.stringify(response?.data)] }
         );
@@ -54,7 +56,7 @@ app.post('/api/storeproducts', async (req, res) => {
 
 //fetching data from database
 
-app.get('/api/storeproductsdata', async (req, res) => {
+app.get('/api/productsdata', async (req, res) => {
     try {
 
         let promise = await databases.listDocuments(
@@ -71,9 +73,6 @@ app.get('/api/storeproductsdata', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch data from the collection' });
     }
 });
-
-
-
 
 const port = 3001;
 app.listen(port, () => {

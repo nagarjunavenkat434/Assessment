@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product,index }) => {
   return (
     <div className="product-card">
       <div className="product-image">
-        <img src={product.images[0].large} alt={`Image of ${product.title}`} />
+        <img src={product.images[index].large} alt={`Image of ${product.title}`} />
       </div>
       <div className="product-info">
         <h3>{product.title}</h3>
